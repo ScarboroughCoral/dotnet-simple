@@ -17,4 +17,9 @@ public partial class medical : System.Web.UI.Page
     {
 
     }
+
+    protected void saveButton_Click(object sender, EventArgs e)
+    {
+        Label2.Text = nameDate1.EmpName + " born on " + nameDate1.EmpDOB.ToLongDateString();
+    }
 }
