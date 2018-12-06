@@ -15,7 +15,15 @@ public partial class medical : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        if(!IsPostBack)
+        {
+           
+            if (Request.QueryString["pcp"] != null)
+            {
+                doctorTextBox.Text = Request.QueryString["pcp"];
 
+            }
+        }
     }
 
     protected void saveButton_Click(object sender, EventArgs e)
