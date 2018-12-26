@@ -10,6 +10,15 @@ public partial class life : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
 
+        if (!IsPostBack)
+        {
+            
+            if (Session["Name"] != null && Session["Birth"] != null)
+            {
+                nameTextBox.Text = Session["Name"].ToString();
+                birthTextBox.Text = Session["Birth"].ToString();
+            }
+        }
         //BirthCompareValidator.ValueToCompare = System.DateTime.Now.ToShortDateString();
         //Trace.Warn("6666", "Beginning of Page_Load of Life.aspx");
     }
@@ -19,6 +28,8 @@ public partial class life : System.Web.UI.Page
         if (Page.IsValid)
         {
             pageValidatedInfo.Text = "有效";
+            Session["Name"] = nameTextBox.Text;
+            Session["Birth"] = birthTextBox.Text;
         }
         else
         {
