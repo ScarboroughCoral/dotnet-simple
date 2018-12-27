@@ -11,6 +11,7 @@ public partial class nameDate : System.Web.UI.UserControl
     {
         get
         {
+            Session["Name"] = nameTextBox.Text;
             return nameTextBox.Text;
         }
         set
@@ -23,6 +24,7 @@ public partial class nameDate : System.Web.UI.UserControl
     {
         get
         {
+            Session["Birth"] = Convert.ToDateTime(birthTextBox.Text);
             return Convert.ToDateTime(birthTextBox.Text);
         }
         set
@@ -32,6 +34,13 @@ public partial class nameDate : System.Web.UI.UserControl
     }
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        if (!IsPostBack)
+        {
+            if (Session["Name"] != null && Session["Birth"] != null)
+            {
+                nameTextBox.Text = Session["Name"].ToString();
+                birthTextBox.Text = Session["Birth"].ToString();
+            }
+        }
     }
 }

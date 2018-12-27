@@ -21,6 +21,18 @@ public partial class _Default : System.Web.UI.Page
             {
                 ListBenefitsCheckBoxList.Items.Add("<a href=" + benefit.benefitPage + ">" + benefit.benefitName + "</a><br/> ");
             }
+
+
+
+            HttpCookie cookie = Request.Cookies["Benefits"];
+            if (cookie != null)
+            {
+                string doctor = cookie.Values["doctor"];
+                string life = cookie.Values["life"];
+                doctorTextBox.Text = doctor;
+                lifeTextBox.Text = life;
+            }
+
         }
 
         

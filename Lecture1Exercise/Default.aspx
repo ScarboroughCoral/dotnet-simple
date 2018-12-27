@@ -23,6 +23,20 @@
             <asp:Label ID="sectionsLabel" runat="server" Text="Selected items"></asp:Label>
             <br />
         </div>
+        <p>
+            &nbsp;</p>
+        <p>
+            <asp:Label ID="Label1" runat="server" Text="Life Insurance"></asp:Label>
+        </p>
+        <p>
+            <asp:TextBox ID="lifeTextBox" runat="server" Width="300px"></asp:TextBox>
+        </p>
+        <p style="height: 19px; margin-bottom: 0px">
+            <asp:Label ID="Label2" runat="server" Text="Doctor"></asp:Label>
+        </p>
+        <p>
+            <asp:TextBox ID="doctorTextBox" runat="server" style="margin-top: 0px" Width="300px"></asp:TextBox>
+        </p>
     </form>
 </body>
 </html>

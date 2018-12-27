@@ -22,6 +22,11 @@ public partial class retirement : System.Web.UI.Page
             retirementDataSet.ReadXml(Server.MapPath("mutual_funds.xml"));
             retirementGridView.DataSource = retirementDataSet;
             retirementGridView.DataBind();
+
+            Application.Lock();
+            Application.Set("Visits", (int)Application.Get("Visits")+1);
+            Application.UnLock();
+            visitsLabel.Text = "This page has been visited " + Application.Get("Visits") + " times!";
         }
     }
 }

@@ -54,6 +54,7 @@
             <alternatingrowstyle backcolor="White" />
         </asp:GridView>
     </p>
+        <asp:Label ID="visitsLabel" runat="server" Text="Label"></asp:Label>
     </form>
 </body>
 </html>

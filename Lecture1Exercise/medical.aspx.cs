@@ -29,5 +29,23 @@ public partial class medical : System.Web.UI.Page
     protected void saveButton_Click(object sender, EventArgs e)
     {
         Label2.Text = nameDate1.EmpName + " born on " + nameDate1.EmpDOB.ToLongDateString();
+
+        HttpCookie cookie = Request.Cookies["Benefits"];
+        string doctor = "";
+        string life = "";
+        if (cookie != null)
+        {
+            doctor = cookie.Values["doctor"];
+            life = cookie.Values["life"];
+            //doctorTextBox.Text = doctor;
+            //lifeTextBox.Text = life;
+        }
+
+        doctor = doctorTextBox.Text;
+        HttpCookie newCookie = new HttpCookie("Benefits");
+        newCookie.Expires = DateTime.Now.AddDays(30);
+        newCookie.Values.Add("doctor", doctor);
+        newCookie.Values.Add("life", life);
+        Response.Cookies.Add(newCookie);
     }
 }

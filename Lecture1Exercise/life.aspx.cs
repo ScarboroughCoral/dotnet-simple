@@ -27,10 +27,51 @@ public partial class life : System.Web.UI.Page
     {
         if (Page.IsValid)
         {
-            pageValidatedInfo.Text = "有效";
+            pageValidatedInfo.Text = "The page is valid";
             Session["Name"] = nameTextBox.Text;
             Session["Birth"] = birthTextBox.Text;
+
+            HttpCookie getCookie = Request.Cookies["Benefits"];
+            string doctor = "";
+            string life = "";
+
+            if (getCookie != null)
+            {
+                doctor = getCookie.Values["doctor"];
+                life = getCookie.Values["life"];
+            }
+
+            // Build the term string.
+            if (longTermCheckBox.Checked)
+            {
+                if (shortTermCheckBox.Checked)
+                {
+                    life = "Short Term and Long Term";
+                }
+                else
+                {
+                    life = "Long Term";
+                }
+            }
+            else if (shortTermCheckBox.Checked)
+            {
+                life = "Short Term";
+            }
+            else
+            {
+                life = "No Term";
+            }
+
+            life += ": Coverage = $" + coverageTextBox.Text;
+
+            HttpCookie newCookie = new HttpCookie("Benefits");
+            newCookie.Expires = DateTime.Now.AddDays(30);
+            newCookie.Values.Add("doctor", doctor);
+            newCookie.Values.Add("life", life);
+            Response.Cookies.Add(newCookie);
+            Response.Redirect("default.aspx");
         }
+
         else
         {
             pageValidatedInfo.Text = "无效";
